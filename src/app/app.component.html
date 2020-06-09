@@ -1,0 +1,27 @@
+<p class="title-text" title="Todo">Angular Todo-App*</p>
+<div class="container">
+    <input type="text" class="input-style" placeholder="Write some from your actions!" 
+    title="Write Text Here" [(ngModel)]="inputValue" (keyup.enter)="addNewDiv()" (input)="writeText()">
+    <div *ngIf="visible" class="blockStyle">
+        <div *ngFor="let item of checkArray;let i = index" class="mainBlock" title="Your action" 
+        [style.opacity]="item.disabled">
+            <div class="check-style" [title]="item.active" (click)="completeAction(i)">
+                <span class="fa iconCheck" [style.display]="item.block">&#xf00c;</span>
+            </div>
+            <span class="newText">{{ item.text }}</span>
+            <div class="line" [style.display]="item.visibility"></div>
+            <span class="iconX" title="Delete" (click)="removeDiv(i)">&times;</span>
+        </div>
+    </div>
+    <div id="last-block" class="item-block">
+        <p class="items d_i_b" title="Items">Items -</p>
+        <span class="count d_i_b" title="Count">{{ count }}</span>
+        <p class="list d_i_b" title="Active Lists" (click)="showActives(forActives)"
+        #forActives>Actives</p>
+        <p class="list d_i_b" title="Completed Lists" (click)="showCompleteds(forCompleteds)"
+        #forCompleteds>Completeds</p>
+        <p class="list d_i_b" title="All" (click)="showAll(forAll)" #forAll>All</p>
+        <p class="list d_i_b" title="Deleted Lists" (click)="showDeleted(forDeleted)" #forDeleted>Memory</p>
+        <p class="list d_i_b" title="Clear All" (click)="toClearMemory()">Clear Memory</p>
+    </div>
+</div>
